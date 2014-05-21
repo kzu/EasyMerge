@@ -91,5 +91,13 @@ namespace EasyMerge
 
 			Assert.True(sorted.FindIndex(s => s.Contains("5736C923")) < sorted.FindIndex(s => s.Contains("63309442")));
 		}
+
+		[Fact]
+		public void when_generating_msbuild_from_sln_then_succeeds ()
+		{
+			File.WriteAllText (@"..\..\Content\SampleLibrary.xml",
+				Microsoft.Build.BuildEngine.SolutionWrapperProject.Generate ("Content\\SampleLibrary.sln",
+				null, new Microsoft.Build.Framework.BuildEventContext (0, 0, 0, 0)));
+		}
 	}
 }
